@@ -14,5 +14,5 @@ EXPOSE 8000
 
 # Run the application (Railway will override with startCommand from railway.json)
 # This is a fallback - railway.json startCommand takes precedence
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "start.sh"]
 
