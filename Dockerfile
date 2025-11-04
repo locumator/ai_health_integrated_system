@@ -6,6 +6,10 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy start script and make it executable
+COPY start.sh .
+RUN chmod +x start.sh
+
 # Copy application code
 COPY . .
 
@@ -14,5 +18,5 @@ EXPOSE 8000
 
 # Run the application (Railway will override with startCommand from railway.json)
 # This is a fallback - railway.json startCommand takes precedence
-CMD ["sh", "start.sh"]
+CMD ["./start.sh"]
 
