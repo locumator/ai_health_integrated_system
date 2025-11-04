@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  fastapi-app:
+    build: .
+    container_name: ai-health-fastapi
+    ports:
+      - "8001:8000"  # External port 8001 (change if needed), internal 8000
+      # If your Node.js bot uses 8000, this FastAPI will use 8001
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - DB_NAME=${DB_NAME}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - CEREBRAS_API_KEY=${CEREBRAS_API_KEY}
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+

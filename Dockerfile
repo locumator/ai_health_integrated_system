@@ -6,17 +6,12 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy start script and make it executable
-COPY start.sh .
-RUN chmod +x start.sh
-
 # Copy application code
 COPY . .
 
-# Expose port (Railway will use this or set PORT env var)
+# Expose port
 EXPOSE 8000
 
-# Run the application (Railway will override with startCommand from railway.json)
-# This is a fallback - railway.json startCommand takes precedence
-CMD ["./start.sh"]
+# Run the application
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 

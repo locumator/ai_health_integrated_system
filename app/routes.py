@@ -21,6 +21,25 @@ class DraftMessageRequest(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
+@router.get("/ip")
+async def get_railway_ip():
+    """
+    Get Railway's outbound IP address for DigitalOcean whitelisting.
+    Use this to find your Railway IP, then add it to DigitalOcean MongoDB trusted sources.
+    """
+    try:
+        import httpx
+        async with httpx.AsyncClient() as client:
+            response = await client.get("https://api.ipify.org?format=json")
+            ip_data = response.json()
+            return {
+                "railway_outbound_ip": ip_data["ip"],
+                "message": "Add this IP to DigitalOcean MongoDB Trusted Sources",
+                "instructions": "Go to DigitalOcean → MongoDB → Settings → Trusted Sources → Add this IP"
+            }
+    except Exception as e:
+        return {"error": str(e), "message": "Could not fetch IP"}
+
 @router.get("/thread/{practice_id}/{doctor_id}")
 async def get_thread(practice_id: str, doctor_id: str):
     try:

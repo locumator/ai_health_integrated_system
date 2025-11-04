@@ -19,8 +19,6 @@ test_endpoint.py
 payload.json
 curl_command.sh
 *.php
-# Note: start.sh is needed, so it's NOT excluded
-RAILWAY_DEPLOY.md
 SETUP_GUIDE.md
 TESTING_GUIDE.md
 CURL_EXAMPLE.md

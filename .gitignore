@@ -206,11 +206,11 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Railway
-.railway/
-railway.json.local
-railway.toml
-*.railway
+# Railway (removed - using DigitalOcean now)
+# .railway/
+# railway.json.local
+# railway.toml
+# *.railway
 
 # Environment variables (keep .env.example if you have one)
 .env.local
